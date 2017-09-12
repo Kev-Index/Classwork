@@ -4,6 +4,7 @@ package intro; //package declaration: matches folder where this file is located
 public class IntroMain {
 	
 	public static final String[] DESCRIPTIONS = {" is a teacher at BTHS", " is a student at BTHS"}; 
+	public static final String[] NAMES = {"Mr. Nockles", "Kevin"};
 
 	//this is the first method that is executed. It is static because it is independent of instances
 	public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class IntroMain {
 		 */
 		int numberOfPeople = 10;
 		for(int i = 0; i < numberOfPeople; i++) {
-			CodingConventions conventionsInstance = new CodingConventions("Mr. Nockles",i%2);
+			CodingConventions conventionsInstance = new CodingConventions(i%2,i%2);
 		/*
 		 * a note on local variables: they are NOT FIELDS (HAS-A relationships)
 		 * they are variables that are only used in the scope of a method

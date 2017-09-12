@@ -15,14 +15,14 @@ public class CodingConventions {
 	 * for this reason, a constructor must ALWAYS be named after the class
 	 * only constructors don't have return types
 	 */
-	public CodingConventions(String name, int descriptionIndex) {
+	public CodingConventions(int nameIndex, int descriptionIndex) {
 		//instantiate variables now:
 		
 		/*
 		 * there are two variables called "name" the local variable and the field
 		 * distinguish between the two using the reserved word "this" (field)
 		 */
-		this.name = name;
+		this.name = IntroMain.NAMES[nameIndex];
 		//this is a static call to a constant
 		description = IntroMain.DESCRIPTIONS[descriptionIndex];
 	}
