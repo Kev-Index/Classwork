@@ -42,6 +42,9 @@ public class Duel
 		pause(2000);
 		d1.setStartingHP(dueler1HP);
 		d2.setStartingHP(dueler2HP);
+
+		boolean d1SaysD2Fair = d1.determineIfOpponentIsFair(d2, 100);
+		boolean d2SaysD1Fair = d2.determineIfOpponentIsFair(d1, 100);
 	}
 	
 	
