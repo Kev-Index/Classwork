@@ -8,6 +8,10 @@ public class CharacterA extends Duel implements Dueler
 	private int hp;
 	private boolean loadedGun = false;
 	
+	public class Characte
+	{
+		
+	}
 	public void taunt() 
 	{
 		String taunt = ("Git gud Karluz");
@@ -20,7 +24,7 @@ public class CharacterA extends Duel implements Dueler
 	}
 	public void setStartingHP(int hp)
 	{
-		System.out.println(hp);
+		hp = getHP();
 	}
 	public int getHP()
 	{
@@ -28,9 +32,13 @@ public class CharacterA extends Duel implements Dueler
 	}
 	public boolean determineIfOpponentIsFair(Dueler d, int hp)
 	{
-		if (d.hp == 100)
+		if (d.getHP() == hp)
 		{
 			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	public int getAction(Object caller)
@@ -41,34 +49,33 @@ public class CharacterA extends Duel implements Dueler
 			{
 				if (Math.random() > 0.4)
 				{
-					return SHOOTING;
+					return Duel.SHOOTING;
+					loadedGun = false;
 				}
 				else
 				{
 					if (Math.random() < 0.5)
 					{
-						return GUARDING;
+						return Duel.GUARDING;
 					}
 				}
 			}
 			else
 			{
-				if (Math.random() > 0.5)
+				if (Math.random() > 0.2)
 				{
-					return GUARDING;
+					return Duel.GUARDING;
 				}
 				else
 				{
-					if (Math.random() > 0.2)
-					{
-						return LOADING;
-					}
-					else
-					{
-						return YEAH_RIGHT;
-					}
+					return Duel.LOADING;
+					loadedGun = true;
 				}
 			}
+		}
+		else
+		{
+			return YEAH_RIGHT;
 		}
 	}
 	public void hit(Object caller)
