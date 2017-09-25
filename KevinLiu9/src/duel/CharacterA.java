@@ -1,5 +1,7 @@
 package duel;
 
+import main.Duel;
+
 public class CharacterA extends Duel implements Dueler 
 {
 	private String name;
@@ -36,7 +38,15 @@ public class CharacterA extends Duel implements Dueler
 	}
 	public int getAction(Object caller)
 	{
-		return caller.;
+		if(caller instanceof Duel)
+		{
+			getAction();
+			return Action;
+		}
+		else
+		{
+			return Duel.YEAH_RIGHT;
+		}
 	}
 	public void hit(Object caller)
 	{
