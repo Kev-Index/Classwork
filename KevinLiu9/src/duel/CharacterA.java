@@ -24,7 +24,7 @@ public class CharacterA extends Duel implements Dueler
 	}
 	public void setStartingHP(int hp)
 	{
-		hp = getHP();
+		hp = 
 	}
 	public int getHP()
 	{
