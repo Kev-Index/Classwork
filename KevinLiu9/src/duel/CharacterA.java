@@ -1,19 +1,16 @@
 package duel;
 
-import main.Duel;
+import duel.Duel;
 
 public class CharacterA extends Duel implements Dueler 
 {
 	private String name;
 	private int hp;
+	private boolean loadedGun = false;
 	
-	public CharacterA()
-	{
-		
-	}
 	public void taunt() 
 	{
-		String taunt = ("Git gud m8");
+		String taunt = ("Git gud Karluz");
 		System.out.println(taunt);
 	}
 	public String getName()
@@ -40,12 +37,38 @@ public class CharacterA extends Duel implements Dueler
 	{
 		if(caller instanceof Duel)
 		{
-			getAction();
-			return Action;
-		}
-		else
-		{
-			return Duel.YEAH_RIGHT;
+			if (loadedGun == true)
+			{
+				if (Math.random() > 0.4)
+				{
+					return SHOOTING;
+				}
+				else
+				{
+					if (Math.random() < 0.5)
+					{
+						return GUARDING;
+					}
+				}
+			}
+			else
+			{
+				if (Math.random() > 0.5)
+				{
+					return GUARDING;
+				}
+				else
+				{
+					if (Math.random() > 0.2)
+					{
+						return LOADING;
+					}
+					else
+					{
+						return YEAH_RIGHT;
+					}
+				}
+			}
 		}
 	}
 	public void hit(Object caller)
