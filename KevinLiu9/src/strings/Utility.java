@@ -1,7 +1,7 @@
 /**
 *Note: I wrote this class without a compiler, quickly. There are probably errors. I apologize. When I get Internet access with my own computer, I will revise.
 */
-package stringMethods;
+package strings;
 
 public clastt Utility{
 
