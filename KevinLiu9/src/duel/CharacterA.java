@@ -8,10 +8,6 @@ public class CharacterA extends Duel implements Dueler
 	private int hp;
 	private boolean loadedGun = false;
 	
-	public class Characte
-	{
-		
-	}
 	public void taunt() 
 	{
 		String taunt = ("Git gud Karluz");
