@@ -1,51 +1,58 @@
-package chatbotProject;
+package chatbot;
 
 import java.util.Scanner;
 
-public class ChatbotMain {
+public class ChatbotMain
+{
 
+	public static final Chatbot chatbot = new Chatbot();
+	private static Scanner inputSource = new Scanner(System.in);
 	
-	public static Chatbot chatbot = new Chatbot();
-	
-	public static void main(String[] args) {
-		chatbot.startTalking();
+	public static void main(String[] args)
+	{
+		chatbot.startChatting();
 	}
 	
-	//pasted from class notes "Utility"
-	private static Scanner inputSource = new Scanner(System.in);
+	
 
-
+	//Copied from class notes Utility class
 	/**
-	 * This method returns the index of keyword in the searchString (after startPsn)
-	 *  where keyword is isolated and has noNegations. It returns -1 if the
-	 *  keyword is not found
+	 * 
+	 * @param searchString
+	 * @param keyword
+	 * @param startPsn
+	 * @return the index of the keyword after startPsn that is isolated and has no negations or -1 otherwise
 	 */
-	public static int findKeyword(String searchString, String keyword, int startPsn) {
-		//makes lowercase
+	public static int findKeyword(String searchString, String keyword, int startPsn)
+	{
+		//make lower-case
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();
-		//find the first position after the startPsn
+		
 		int psn = searchString.indexOf(keyword, startPsn);
 		
-		//keep searching until keyword is found (noNegations and isolated)
-		while(psn >= 0) {
-			
-			if(keywordIsIsolated(psn, keyword, searchString) && noNegations(searchString, psn)) {
+		while(psn >= 0)
+		{
+			if(keywordIsIsolated(psn,keyword,searchString) && noNegations(searchString, psn)) 
+			{
 				return psn;
-			}else {
-				//look for the next occurrence
-				psn = searchString.indexOf(keyword, psn+1);
+			}
+			else
+			{
+				psn = searchString.indexOf(keyword, psn+1);//returns the index of the NEXT keyword
 			}
 		}
 		return -1;
 	}
 	
 	
-	public static boolean keywordIsIsolated(int psn, String keyword, String s){
+	public static boolean keywordIsIsolated(int psn, String keyword, String s)
+	{
 		return true;
 	}
 
-	public static boolean noNegations(String s, int psn){
+	public static boolean noNegations(String s, int psn)
+	{
 		return true;
 	}
 
