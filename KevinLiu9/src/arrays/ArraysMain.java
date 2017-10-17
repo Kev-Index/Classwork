@@ -10,6 +10,115 @@ public class ArraysMain {
 	public ArraysMain() {
 		// TODO Auto-generated constructor stub
 		
+		//warmUpMethods();
+
+		tuesdayMethods();
+	}
+	
+	private void tuesdayMethods()
+	{
+		int[] orderTest = {1,2,3,4,5,1,6,7,8,9,10};
+		//cycleThrough(orderTest,1);
+		//System.out.println(Arrays.toString(orderTest));
+		System.out.println(longestConsecutiveSequence(orderTest) + " is the l.c.s. It should be 5");
+	}
+	
+	//return the length of the longest consecutive sequence in the array
+	//For example:
+	//lCS({1,2,3,2,3,4,5,2,3,4}) -> 4
+	//lCS({16,17,18,19,2,5,6,7,8,9,10}) -> 6
+	private int longestConsecutiveSequence(int[] arr)
+	{
+		int maxLength = 1;
+		int currentCount = 1;
+		
+		for (int i = 0; i < arr.length; i++)
+		{
+			while (i + currentCount < arr.length&& isConsecutive(arr,i,i+currentCount))
+			{
+				currentCount++;
+			}
+			if (currentCount > maxLength)
+			{
+				maxLength = currentCount;
+			}
+			i = i + currentCount-1;//saves time
+			currentCount = 1;
+		}
+		return maxLength;
+	}
+	
+	//helper method
+	//returns true if all of the elements from start to end
+	//are increasing by 1
+	//Example:
+	//iC({1,7,3,6,6,7,12},3,5) -> true
+	private boolean isConsecutive(int[] arr, int start, int end)
+	{
+		for (int i = start; i < end; i++)
+		{
+			if (arr[i] + 1 != arr[i+1])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	//The element at index 0 moves to the last position in the array
+	//as all other elements move forward. This must happen exactly n times.
+	private void cycleThrough(int[] arr, int n) {
+		// TODO Auto-generated method stub
+		
+		for (int i = 0; i < n; i++)
+		{
+			frontToBack(arr);
+		}
+	}
+
+	//removes the element at 0; pushes all the other elements forward
+	//1 goes to 0, 2 goes to 1...
+	//puts the element that was at index 0 at the end
+	private void frontToBack(int[] arr) {
+		// TODO Auto-generated method stub
+		
+		int front = arr[0];
+		for (int i = 0; i < arr.length-1; i++)
+		{
+			arr[i] = arr[i+1];	
+		}
+		arr[arr.length-1] = front;
+	}
+
+	public void warmUpMethods()
+	{
+		int[] orderTest = {1,2,3,4,5,6,7,8,9,10};
+		reverseOrder(orderTest);
+		System.out.println(Arrays.toString(orderTest));
+		System.out.println(Arrays.toString(subArray(orderTest,3,4)));
+	}
+	
+	public void reverseOrder(int[] arr)
+	{
+		for (int i = 0; i <arr.length/2; i++) //Divided by 2 so you dont flip everything twice
+		{
+			swap(arr,i,arr.length-1-i);
+		}
+		
+	}
+	
+	public int[] subArray(int[] arr, int psn, int length)
+	{
+		int[] sub = new int[length];//create new array for length
+		
+		for(int i = 0;i < length; i++)//for each object in length
+		{
+			sub[i] = arr[i+psn];//line up the object in arr and the object in length
+		}
+		return sub; //return the arr objects the length of length
+	}
+	
+	public void cardMethods(){
 		suits = new String[4];
 		suits[0] = "Clubs";
 		suits[1] = "Hearts";
@@ -171,4 +280,5 @@ public class ArraysMain {
 		
 		return sum;
 	}
+	
 }
