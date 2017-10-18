@@ -12,15 +12,64 @@ public class ArraysMain {
 		
 		//warmUpMethods();
 
-		tuesdayMethods();
+		//tuesdayMethods();
+		
+		wednesdayMethods();
 	}
 	
+	private void wednesdayMethods() {
+		
+		int[] diceRolls = new int[10000];
+		populate(diceRolls);
+		int[] data = longestConsecutiveSequenceAndIndex(diceRolls);
+		int max = 1;
+		int longest = data[0];
+		System.out.println("The longest sequence is "+ longest + " rolls." + "It happened on roll #" 
+							+ data[1] + " the sequence was " + 
+							Arrays.toString(subArray(diceRolls,data[1], data[0])) + ".");
+		while (longest != 11) {
+			populate(diceRolls);
+			data = longestConsecutiveSequenceAndIndex(diceRolls);
+			longest = data[0];
+			if (longest = data[0])
+		}
+	}
+
+	//BIG IDEA:
+	//Usually a method returns ONE piece of data
+	//IF we ever want more than one piece of data, one way of doing that
+	//is by using an array, as you see here, a method that returns the LENGTH
+	//of the sequence and its START position(both ints)
+	private int[] longestConsecutiveSequenceAndIndex(int[] arr) {
+		
+		//use an int[] to store the data
+		int[] data = new int[2];//element at zero is length, at 1 is position
+		
+		data[0] = 1;
+		int currentCount = 1;
+		for (int i = 0; i < arr.length-1; i++)
+		{
+			while (i + currentCount < arr.length&& isConsecutive(arr,i,i+currentCount))
+			{
+				currentCount++;
+			}
+			if (currentCount > data[0])
+			{
+				data[0] = currentCount;
+				
+			}
+			i = i + currentCount-1;//saves time
+			data[1] = i;
+		}
+		return data;
+	}
+
 	private void tuesdayMethods()
 	{
-		int[] orderTest = {1,2,3,4,5,1,6,7,8,9,10};
+		int[] orderTest = {1,2,3,4,5,1,6,7,8,9,10,11};
 		//cycleThrough(orderTest,1);
 		//System.out.println(Arrays.toString(orderTest));
-		System.out.println(longestConsecutiveSequence(orderTest) + " is the l.c.s. It should be 5");
+		System.out.println(longestConsecutiveSequence(orderTest) + " is the l.c.s. It should be 6");
 	}
 	
 	//return the length of the longest consecutive sequence in the array
@@ -68,7 +117,6 @@ public class ArraysMain {
 	//The element at index 0 moves to the last position in the array
 	//as all other elements move forward. This must happen exactly n times.
 	private void cycleThrough(int[] arr, int n) {
-		// TODO Auto-generated method stub
 		
 		for (int i = 0; i < n; i++)
 		{
@@ -80,7 +128,6 @@ public class ArraysMain {
 	//1 goes to 0, 2 goes to 1...
 	//puts the element that was at index 0 at the end
 	private void frontToBack(int[] arr) {
-		// TODO Auto-generated method stub
 		
 		int front = arr[0];
 		for (int i = 0; i < arr.length-1; i++)
