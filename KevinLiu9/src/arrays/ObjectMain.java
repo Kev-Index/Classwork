@@ -7,13 +7,15 @@ public class ObjectMain {
 		populate(people);
 		//people[0] = new Thing("toaster oven");
 		
-		Person[] group = selectGroup(people, 120);
+		//Person[] group = selectGroup(people, 120);
 		
-		analyzeCommonalities(people, group);
+		//analyzeCommonalities(people, group);
 		
-		//for(Person p: group) {
-		//	System.out.println(p);
-		//}
+		for(Person p: people) {
+			p.mingle(people);
+			System.out.println(p);
+			p.stateYourFriends();
+		}
 	}
 	
 	private void populate(Object[] people) {
