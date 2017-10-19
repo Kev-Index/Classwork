@@ -13,6 +13,7 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Borough home;
+	private Hobby hobby;
 	
 	public Person(String first, String last, Borough home) {
 		this.firstName = first;
