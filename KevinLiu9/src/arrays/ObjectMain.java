@@ -13,8 +13,8 @@ public class ObjectMain {
 		
 		for(Person p: people) {
 			p.mingle(people);
-			System.out.println(p);
 			p.stateYourFriends();
+			System.out.println(p);
 		}
 	}
 	
