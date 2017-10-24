@@ -45,7 +45,8 @@ public class CaveRoom {
 		for (int i = 0; i < doors.length; i++) {
 			
 			if (doors[i] != null) {
-				directions += "There is a " + doors[i].getDescription() + "to " + toDirection(i) + ". " + doors[i].getDetails() + "\n";
+				directions += "There is a " + doors[i].getDescription() + "to " 
+						+ toDirection(i) + ". " + doors[i].getDetails() + "\n";
 			}
 			else {
 				nullCount++;
@@ -62,11 +63,86 @@ public class CaveRoom {
 	//hint: complete this method without using an if statement
 	public static String toDirection(int dir) {
 		
-		String[] direction = {"the Nort", "the East", "the South", "the West"};
+		String[] direction = {"the North", "the East", "the South", "the West"};
 		//NOTE: when i say "no long if-else" statements,
 		//this is how you should be thinking
 		return direction[dir];
 	}
+
+	public void enter() {
+		contents = "X";
+	}
+	
+	public void leave() {
+		contents = defaultContents;
+	}
+	
+	//This is how we join rooms together.
+	//It give us this room access to anotherRoom and vice-versa
+	//It also puts the door between both rooms
+	public void setConnection(int direction, CaveRoom anotherRoom, Door door) {
+		addRoom(direction, anotherRoom, door);
+		anotherRoom.addRoom(oppositeDirection(direction), this, door);
+	}
+	
+	private void addRoom(int dir, CaveRoom caveRoom, Door door) {
+		borderingRooms[dir] = caveRoom;
+		doors[dir] = door;
+		setDirections();//updates the directions
+	}
+
+	public void interpretInput(String input) {
+		while(!isValid(input)) {
+			System.out.println("You can only enter 'w', 'a', 's', or 'd'.");
+			input = CaveExplorer.in.nextLine();
+		}
+		
+		int direction = "wasd".indexOf(input);
+		
+		goToRoom(direction);
+	}
+	
+	//make a method that returns true if w,a,s, or d is the input
+	private boolean isValid(String input) {
+
+		String inputLetters = "wasd";
+		return inputLetters.indexOf(input) != -1 && input.length() == 1;
+	}
+
+	//THIS IS WHERE YOU EDIT YORU CAVES
+	public static void setUpCaves() {
+		
+	}
+
+	public void goToRoom(int direction) {
+		
+		//make sure there is a room to go to:
+		if(borderingRooms[direction] != null && doors[direction] != null && doors[direction].isOpen()) {
+			CaveExplorer.currentRoom.leave();
+			CaveExplorer.currentRoom = borderingRooms[direction];
+			CaveExplorer.currentRoom.enter();
+			CaveExplorer.inventory.updateMap();
+			
+		}else {
+			
+			//print red text
+			System.err.println("You can't do that!");
+		}
+	}
+
+	//returns the OPPOSITE direction
+	//oD(0) returns 2
+	//oD(1) returns 3
+	public static int oppositeDirection(int dir) {
+		
+		//ONE WAY
+		//int[] opposite = {2,3,0,1};
+		//return opposite[dir];
+		
+		//SECOND WAY
+		return (dir+2)%4;
+	}
+
 
 	public String getDescription() {
 		return description;
