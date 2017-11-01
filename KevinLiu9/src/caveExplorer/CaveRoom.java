@@ -155,7 +155,7 @@ public class CaveRoom {
 	 */
 	public static void setUpCaves() {
 		//1. Determine size of caves
-		CaveExplorer.caves = new CaveRoom[5][5];
+		CaveExplorer.caves = new NPCRoom[5][5];
 		CaveRoom[][] c = CaveExplorer.caves;//create a shortcut for accessing CaveExplorer.caves
 		//2. Populate with default caves
 		for(int row =0; row < c.length; row ++) {
@@ -165,6 +165,11 @@ public class CaveRoom {
 		}
 		//3. Replace some default rooms with custom rooms (SAVE FOR LATER)
 		
+		NPC testNPC = new NPC();
+		testNPC.setPosition(3, 3);
+		CaveExplorer.npcs = new NPC[1];
+		CaveExplorer.npcs[0] = testNPC;
+		
 		//4.set starting room
 		CaveExplorer.currentRoom = c[0][1];
 		CaveExplorer.currentRoom.enter();
@@ -173,8 +178,9 @@ public class CaveRoom {
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 		c[1][1].setConnection(EAST, c[1][2], new Door());
 		
-		CaveRoom[][][] layers = new CaveRoom[3][][];
-		layers[0] = new CaveRoom[3][4];
+		//CaveRoom[][][] layers = new CaveRoom[3][][];
+		//layers[0] = new CaveRoom[3][4];
+		
 		//make doors lock after you walk in
 		//teleport to a different room
 		//make map dark
