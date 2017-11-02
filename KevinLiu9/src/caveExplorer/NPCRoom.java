@@ -16,7 +16,7 @@ public class NPCRoom extends CaveRoom {
 	public void enterNPC(NPC n) {
 		this.npc = n;
 	}
-
+	
 	public void leaveNPC() {
 		this.npc = null;
 	}
@@ -25,21 +25,19 @@ public class NPCRoom extends CaveRoom {
 		return npc != null;
 	}
 	
-	
 	/**
-	 * Everything above is a NEW function of a CaveRoom,
-	 * the methods below REPLACE original 
+	 * Everything above is a NEW function of a CaveRoom, 
+	 * the methods below REPLACE original CaveRoom methods
 	 */
 	
 	/**
-	 * Override to change descriptions of possible moves
+	 * Override to change description of possible moves
 	 */
 	public void printValidMoves() {
-		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move or you can press 'e' to interact.");
-		
+		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move "
+				+ "or you can press 'e' to interact.");
 	}
-	
-	
+
 	/**
 	 * override to add more moves
 	 * @return
@@ -53,19 +51,19 @@ public class NPCRoom extends CaveRoom {
 	 * @param direction
 	 */
 	public void performAction(int direction) {
-		if (direction == 4) {
-			if (npc != null && npc.isActive()) {
+		if(direction == 4) {
+			if(npc != null && npc.isActive()) {
 				npc.interact();
 			}else {
 				CaveExplorer.print("There is nothing to interact with.");
 			}
 		}else {
-			CaveExplorer.print("That key does nothing.");
+			CaveExplorer.print("That key does nothing");
 		}
 	}
 	
 	public String getContents() {
-		if (containsNPC() && npc.isActive()) {
+		if(containsNPC() && npc.isActive()) {
 			return npc.getSymbol();
 		}else {
 			return super.getContents();
@@ -73,12 +71,19 @@ public class NPCRoom extends CaveRoom {
 	}
 	
 	public String getDescription() {
-		if (containsNPC() && npc.isActive()) {
-			return super.getDescription() + "\n" + npc.getDescription();
-		}else if (containsNPC() && !npc.isActive()) {
-			return super.getDescription() + "\n" + npc.getInactiveDescription();
+		if(containsNPC() && npc.isActive()) {
+			return super.getDescription()+"\n"+npc.getDescription();
+		}else if(containsNPC() && !npc.isActive()){
+			return super.getDescription()+"\n"+npc.getInactiveDescription();
 		}else {
 			return super.getDescription();
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
 }
