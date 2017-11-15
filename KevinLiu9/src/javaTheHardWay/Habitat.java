@@ -32,6 +32,10 @@ public class Habitat extends Environment {
 		return s;
 	}
 	
+	public Animal[] getAnimals() {
+		return animals;
+	}
+	
 	public void addAnimal(Animal animal) {
 		int i = 0;
 		while (i < animals.length) {
