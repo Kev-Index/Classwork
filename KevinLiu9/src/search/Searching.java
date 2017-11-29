@@ -57,21 +57,30 @@ public class Searching {
 
 	private int binarySearch(int[] searchThis, int startIndex, int endIndex, int target) {
 		
-		int index = (endIndex-startIndex)/2;
+		int index = (int)((endIndex+startIndex)/2);
 		
 		if (searchThis[index] == target) {
 			return target;
+		} else if(endIndex - startIndex == 1) {
+			if(searchThis[endIndex] == target) {
+				return endIndex;
+			}
+			else {
+				return startIndex;
+			}
 		} else if (searchThis[index] < target) {
+			
 			startIndex = index;
 			
-			binarySearch(numbers, startIndex, endIndex, target);
+			return binarySearch(searchThis, startIndex, endIndex, target);
 		} else if (searchThis[index] > target) {
 			endIndex = index;
 			
-			binarySearch(numbers, startIndex, endIndex, target);
-		}
+			return binarySearch(searchThis, startIndex, endIndex, target);
+		} 
 		
 		return -1;
+
 	}
 
 	private int search(int[] searchThis, int target) {
