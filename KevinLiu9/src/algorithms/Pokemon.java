@@ -27,8 +27,22 @@ public class Pokemon {
 		});
 		squirtle.lapse();
 		bulbasaur.lapse();
+		System.out.println("Squirtle is attacking again");
+		squirtle.attack(bulbasaur, new Attack() {
+			public void attack(Pokemon target) {
+				int hp = target.getHP();
+				target.setHP(hp-100);
+			}
+		});
+		squirtle.levelUp(new Effect() {
+			
+			public void happen() {
+				squirtle.setHP(100);
+			}
+		});
+		
 	}
-	
+
 	public Pokemon(String name, int level) {
 		this.name = name;
 		this.level = level;
@@ -72,4 +86,8 @@ public class Pokemon {
 		}
 	}
 	
+	public void levelUp(Effect e) {
+		level++;
+		e.happen();
+	}
 }
